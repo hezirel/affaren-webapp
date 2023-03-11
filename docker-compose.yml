@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+  backend:
+    build: ./server
+    restart: always
+    environment:
+      DATABASE_URL: postgres://affaren:affaren@db:5432/affaren
+      API_PORT: ${API_PORT}
+      TOKEN_KEY: ${TOKEN_KEY}
+    volumes:
+      - ./server:/app
+    ports:
+      - 4001:4001
+    depends_on:
+      - db
+  frontend:
+    build: ./client
+    restart: always
+    volumes:
+      - ./client:/app
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:${API_PORT}
+      CHOKIDAR_USEPOLLING: 'true'
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
