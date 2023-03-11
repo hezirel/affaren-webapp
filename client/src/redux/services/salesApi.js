@@ -5,7 +5,7 @@ import { ip } from "../ip"
 export const salesApi = createApi({
 	reducerPath: "salesApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: `http://${ip}:4001/`,
+		baseUrl: ip,
 		prepareHeaders: (headers) => {
 			const token = store.getState().login?.token
 			const role =

@@ -4,7 +4,7 @@ import { ip } from "../ip"
 export const loginApi = createApi({
 	reducerPath: "loginApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: `http://${ip}:4001/`,
+        baseUrl: ip,
 	}),
 	tagTypes: ["Sales"],
 	endpoints: (builder) => ({

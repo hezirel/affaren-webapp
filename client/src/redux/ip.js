@@ -1,1 +1,1 @@
-export const ip = "192.168.1.41"
+export const ip = process.env.REACT_APP_BACKEND_URL

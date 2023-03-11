@@ -6,7 +6,7 @@ import { ip } from "../ip"
 export const cardApi = createApi({
 	reducerPath: "cardApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: `http://${ip}:4001/`,
+		baseUrl: ip,
 		prepareHeaders: (headers) => {
 			const token = store.getState().login?.token
 			const role =
