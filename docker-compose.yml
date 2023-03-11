@@ -19,8 +19,9 @@ services:
       TOKEN_KEY: ${TOKEN_KEY}
     volumes:
       - ./server:/app
+    network_mode: host
     ports:
-      - 4001:4001
+      - ${API_PORT}:${API_PORT}
     depends_on:
       - db
   frontend:
@@ -29,7 +30,7 @@ services:
     volumes:
       - ./client:/app
     environment:
-      REACT_APP_BACKEND_URL: http://localhost:${API_PORT}
+      REACT_APP_BACKEND_URL: http://${API_IP}:${API_PORT}
       CHOKIDAR_USEPOLLING: 'true'
     ports:
       - 3000:3000

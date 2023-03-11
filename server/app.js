@@ -1,5 +1,4 @@
 require("dotenv").config()
-const { users } = require("./db.json")
 const bcrypt = require("bcryptjs")
 const nodemailer = require("nodemailer")
 const jwt = require("jsonwebtoken")
